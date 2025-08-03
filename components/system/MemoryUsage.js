@@ -42,7 +42,7 @@ export default function MemoryUsage() {
 
     return (
         <DashboardCard title="Memory Usage" className="flex-1 relative">
-            <div className="flex items-center justify-center h-40 mb-6 mt-[10px]">
+            <div className="flex items-center justify-center h-40 mb-6 mt-[60px]">
                 <div className="relative w-32 h-32" style={{ width: '233.734px', height: '233.734px' }}>
                     <Doughnut data={chartData} options={chartOptions} />
 
@@ -58,7 +58,7 @@ export default function MemoryUsage() {
             </div>
             
             {/* Legend */}
-            <div className="space-y-2 mt-[40px] flex flex-col items-center">
+            <div className="space-y-2 mt-[80px] flex flex-col items-center">
                 <div className="flex items-center justify-between text-sm w-full max-w-xs">
                     <div className="flex items-center">
                         <div className="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>

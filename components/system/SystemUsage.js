@@ -41,35 +41,35 @@ export default function SystemUsage() {
     };
 
     return (
-        <DashboardCard title="System Usage" className="flex-1 relative">
-            <div className="flex items-center justify-center h-40 mb-6 mt-[10px]">
-                <div className="w-32 h-32" style={{ width: '233.734px', height: '233.734px' }}>
+        <DashboardCard title="System Usage" className="flex-1">
+            <div className="flex items-center justify-center h-40 mb-6 mt-[60px]">
+                <div className="relative w-32 h-32" style={{ width: '233.734px', height: '233.734px' }}>
                     <Doughnut data={chartData} options={chartOptions} />
                 </div>
             </div>
             
             {/* Legend */}
-            <div className="space-y-2 mt-[40px] flex flex-col items-center">
+            <div className="space-y-2 mt-[80px] flex flex-col items-center">
                 <div className="flex items-center justify-between text-sm w-full max-w-xs">
                     <div className="flex items-center">
-                        <div className="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
-                        <span>Memory Usage</span>
-                    </div>
-                    <span className="font-medium">35%</span>
-                </div>
-                <div className="flex items-center justify-between text-sm w-full max-w-xs">
-                    <div className="flex items-center">
-                        <div className="w-3 h-3 rounded-full bg-blue-300 mr-2"></div>
+                        <div className="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
                         <span>CPU Usage</span>
                     </div>
-                    <span className="font-medium">55%</span>
+                    <span className="font-medium">72%</span>
                 </div>
                 <div className="flex items-center justify-between text-sm w-full max-w-xs">
                     <div className="flex items-center">
-                        <div className="w-3 h-3 rounded-full bg-blue-800 mr-2"></div>
-                        <span>Server</span>
+                        <div className="w-3 h-3 rounded-full bg-green-300 mr-2"></div>
+                        <span>RAM Usage</span>
                     </div>
-                    <span className="font-medium">10%</span>
+                    <span className="font-medium">58%</span>
+                </div>
+                <div className="flex items-center justify-between text-sm w-full max-w-xs">
+                    <div className="flex items-center">
+                        <div className="w-3 h-3 rounded-full bg-gray-700 mr-2"></div>
+                        <span>Available</span>
+                    </div>
+                    <span className="font-medium">28%</span>
                 </div>
             </div>
         </DashboardCard>
