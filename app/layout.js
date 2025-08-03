@@ -17,14 +17,14 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.variable} antialiased bg-[#F0F9FF]`}
       >
-        <div className="flex min-h-screen">
+        <div className="flex min-h-screen w-full">
           {/* Side Navigation */}
-          <nav className="bg-[#FEFEFE] w-[337px] min-h-screen">
+          <nav className="bg-[#FEFEFE] w-[337px] min-h-screen flex-shrink-0">
             {/* Sidebar content will go here */}
           </nav>
           
           {/* Main Content */}
-          <main className="flex-1">
+          <main className="flex-1 min-w-0">
             {children}
           </main>
         </div>

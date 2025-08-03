@@ -6,10 +6,12 @@ import ServerUsage from "../components/ServerUsage";
 
 export default function Home() {
   return (
-    <main className="p-20">
-      <h1>Overview</h1>
+    <main className="py-20">
+      <div className="px-20">
+        <h1>Overview</h1>
+      </div>
 
-      <div className="my-[63px] p-[1px]">
+      <div className="my-[63px] p-[1px] px-20">
         <UserStats />
         <AppPerformance />
         <SystemHealth />

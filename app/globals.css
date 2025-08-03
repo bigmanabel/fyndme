@@ -17,15 +17,9 @@ h3 {
 }
 
 .card h4 {
-  color: #000;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  @apply text-[14px] font-[400]
 }
 
 .sidebar {
-  background: #FEFEFE;
-  width: 337px;
-  min-height: 100vh;
+  @apply bg-[#FEFEFE] w-[337px] min-h-screen;
 }
