@@ -6,7 +6,7 @@ export default function UserStats() {
     return (
         <section className="user-stats-section">
             <h3 className="-mt-[28px]">Users</h3>
-            <div className="flex w-full gap-4">
+            <div className="flex w-full gap-[60px]">
                 <NewSignUps />
                 <ActiveUsers />
                 <InactiveUsers />

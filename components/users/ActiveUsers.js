@@ -71,7 +71,7 @@ export default function ActiveUsers() {
         <DashboardCard title="Active Users" className="flex-1 relative">
             <div className="flex items-start justify-between mb-4">
                 <div>
-                    <div className="text-4xl font-bold text-black mb-1">1,870</div>
+                    <div className="text-2xl font-[500] text-black mb-1">1,870</div>
                     <div className="text-sm text-gray-500">currently active</div>
                 </div>
                 <div className="flex items-center text-green-600 text-sm font-medium">
@@ -83,14 +83,21 @@ export default function ActiveUsers() {
             </div>
 
             {/* Real Chart */}
-            <div className="h-32 relative mb-4 w-full" style={{ height: '127px' }}>
+            <div className="h-32 relative mb-[26px] w-full" style={{ height: '127px' }}>
                 <Line data={chartData} options={chartOptions} />
             </div>
 
-            <div className="space-y-1 text-xs text-gray-500">
-                <div>Peak Activity: 2,500 users at 8:00 PM</div>
-                <div>Lowest Activity: 300 users</div>
-                <div>at 4:00 AM</div>
+                        <div className="flex">
+                <div className="space-y-1 text-xs font-medium" style={{ color: '#767676' }}>
+                    <div>Peak Activity: 2,500 users at 8:00 PM</div>
+                </div>
+            </div>
+            
+            <div className="flex mt-2">
+                <div className="space-y-1 text-xs font-medium" style={{ color: '#767676' }}>
+                    <div>Lowest Activity: 300 users</div>
+                    <div>at 4:00 AM</div>
+                </div>
             </div>
         </DashboardCard>
     );
