@@ -1,50 +1,82 @@
+"use client";
+
 import DashboardCard from '../DashboardCard';
+import { Bar } from 'react-chartjs-2';
+import '../../lib/chartConfig';
 
 export default function ServerUsageByCountry() {
-    const countries = [
-        { name: 'US', value: 85, color: '#8B5CF6' },
-        { name: 'Canada', value: 65, color: '#10B981' },
-        { name: 'Japan', value: 95, color: '#000000' },
-        { name: 'India', value: 90, color: '#3B82F6' },
-        { name: 'Mexico', value: 55, color: '#60A5FA' },
-        { name: 'Australia', value: 75, color: '#34D399' },
-        { name: 'UK', value: 50, color: '#93C5FD' },
-        { name: 'France', value: 45, color: '#1E40AF' },
-        { name: 'Spain', value: 70, color: '#6B7280' },
-        { name: 'Germany', value: 60, color: '#A855F7' },
-        { name: 'Italy', value: 55, color: '#10B981' },
-        { name: 'South Korea', value: 80, color: '#3B82F6' }
-    ];
+    const chartData = {
+        labels: ['US', 'Canada', 'Japan', 'India', 'Mexico', 'Australia', 'UK', 'France', 'Spain', 'Germany', 'Italy', 'South Korea'],
+        datasets: [
+            {
+                data: [85, 65, 95, 90, 55, 75, 50, 45, 70, 60, 55, 80],
+                backgroundColor: [
+                    '#8B5CF6', '#10B981', '#000000', '#3B82F6',
+                    '#60A5FA', '#34D399', '#93C5FD', '#1E40AF',
+                    '#6B7280', '#A855F7', '#10B981', '#3B82F6'
+                ],
+                borderRadius: {
+                    topLeft: 4,
+                    topRight: 4,
+                },
+                borderSkipped: false,
+            },
+        ],
+    };
+
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false,
+            },
+            tooltip: {
+                enabled: true,
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                titleColor: 'white',
+                bodyColor: 'white',
+                borderColor: '#3B82F6',
+                borderWidth: 1,
+                callbacks: {
+                    label: function (context) {
+                        return context.label + ': ' + context.parsed.y + '%';
+                    }
+                }
+            },
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false,
+                },
+                ticks: {
+                    font: {
+                        size: 10,
+                    },
+                    maxRotation: 45,
+                },
+            },
+            y: {
+                beginAtZero: true,
+                max: 100,
+                grid: {
+                    color: '#f3f4f6',
+                },
+                ticks: {
+                    stepSize: 25,
+                    font: {
+                        size: 10,
+                    },
+                },
+            },
+        },
+    };
 
     return (
         <DashboardCard title="Server Usage By Country" className="w-full mb-[40px]">
-            <div className="h-64 flex items-end justify-between px-4 pb-8 relative">
-                {/* Y-axis labels would go here */}
-                <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-400 pr-2">
-                    <span>100</span>
-                    <span>75</span>
-                    <span>50</span>
-                    <span>25</span>
-                    <span>0</span>
-                </div>
-                
-                {/* Bars */}
-                <div className="flex items-end justify-between w-full ml-8 space-x-2">
-                    {countries.map((country, index) => (
-                        <div key={country.name} className="flex flex-col items-center">
-                            <div 
-                                className="w-8 rounded-t-sm relative"
-                                style={{ 
-                                    height: `${(country.value / 100) * 180}px`,
-                                    backgroundColor: country.color
-                                }}
-                            />
-                            <span className="text-xs text-gray-600 mt-2 transform -rotate-45 origin-top-left">
-                                {country.name}
-                            </span>
-                        </div>
-                    ))}
-                </div>
+            <div className="h-64">
+                <Bar data={chartData} options={chartOptions} />
             </div>
         </DashboardCard>
     );

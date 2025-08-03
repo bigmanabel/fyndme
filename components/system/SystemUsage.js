@@ -1,74 +1,70 @@
+"use client";
+
 import DashboardCard from '../DashboardCard';
+import { Doughnut } from 'react-chartjs-2';
+import '../../lib/chartConfig';
 
 export default function SystemUsage() {
+    const chartData = {
+        labels: ['Memory Usage', 'CPU Usage', 'Server'],
+        datasets: [
+            {
+                data: [35, 55, 10],
+                backgroundColor: ['#3b82f6', '#93c5fd', '#1e40af'],
+                borderWidth: 0,
+                cutout: '70%',
+            },
+        ],
+    };
+
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false,
+            },
+            tooltip: {
+                enabled: true,
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                titleColor: 'white',
+                bodyColor: 'white',
+                borderColor: '#3B82F6',
+                borderWidth: 1,
+                callbacks: {
+                    label: function (context) {
+                        return context.label + ': ' + context.parsed + '%';
+                    }
+                }
+            },
+        },
+    };
+
     return (
         <DashboardCard title="System Usage" className="flex-1 relative">
-            <div className="flex items-center justify-center h-40 mb-6">
-                {/* Donut Chart */}
-                <div className="relative">
-                    <svg width="120" height="120" viewBox="0 0 120 120">
-                        <defs>
-                            <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-                                <feDropShadow dx="0" dy="4" stdDeviation="3" floodOpacity="0.1"/>
-                            </filter>
-                        </defs>
-                        {/* Background circle */}
-                        <circle cx="60" cy="60" r="45" fill="none" stroke="#f3f4f6" strokeWidth="12"/>
-                        
-                        {/* CPU Usage - Light Blue (55%) */}
-                        <circle 
-                            cx="60" cy="60" r="45" 
-                            fill="none" 
-                            stroke="#93c5fd" 
-                            strokeWidth="12"
-                            strokeDasharray="155.51 282.74"
-                            strokeDashoffset="0"
-                            transform="rotate(-90 60 60)"
-                            filter="url(#shadow)"
-                        />
-                        
-                        {/* Memory Usage - Blue (35%) */}
-                        <circle 
-                            cx="60" cy="60" r="45" 
-                            fill="none" 
-                            stroke="#3b82f6" 
-                            strokeWidth="12"
-                            strokeDasharray="98.96 282.74"
-                            strokeDashoffset="-155.51"
-                            transform="rotate(-90 60 60)"
-                        />
-                        
-                        {/* Server - Dark Blue (10%) */}
-                        <circle 
-                            cx="60" cy="60" r="45" 
-                            fill="none" 
-                            stroke="#1e40af" 
-                            strokeWidth="12"
-                            strokeDasharray="28.27 282.74"
-                            strokeDashoffset="-254.47"
-                            transform="rotate(-90 60 60)"
-                        />
-                    </svg>
+            <div className="flex items-center justify-center h-40 mb-6 mt-[10px]">
+                <div className="w-32 h-32" style={{ width: '233.734px', height: '233.734px' }}>
+                    <Doughnut data={chartData} options={chartOptions} />
                 </div>
             </div>
             
             {/* Legend */}
-            <div className="space-y-2">
-                <div className="flex items-center justify-between text-sm">
+            <div className="space-y-2 mt-[40px] flex flex-col items-center">
+                <div className="flex items-center justify-between text-sm w-full max-w-xs">
                     <div className="flex items-center">
                         <div className="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
                         <span>Memory Usage</span>
                     </div>
                     <span className="font-medium">35%</span>
                 </div>
-                <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center justify-between text-sm w-full max-w-xs">
                     <div className="flex items-center">
                         <div className="w-3 h-3 rounded-full bg-blue-300 mr-2"></div>
                         <span>CPU Usage</span>
                     </div>
                     <span className="font-medium">55%</span>
                 </div>
-                <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center justify-between text-sm w-full max-w-xs">
                     <div className="flex items-center">
                         <div className="w-3 h-3 rounded-full bg-blue-800 mr-2"></div>
                         <span>Server</span>

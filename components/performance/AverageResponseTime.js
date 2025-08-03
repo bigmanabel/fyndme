@@ -11,11 +11,11 @@ export default function AverageResponseTime() {
                 <div className="flex items-center text-green-600 text-sm font-medium">
                     +15.03%
                     <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M7 14l5-5 5 5z"/>
+                        <path d="M7 14l5-5 5 5z" />
                     </svg>
                 </div>
             </div>
-            
+
             {/* Simple line indicator */}
             <div className="h-8 flex items-center">
                 <div className="w-full bg-gray-100 h-0.5 relative">

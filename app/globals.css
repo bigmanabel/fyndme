@@ -13,5 +13,13 @@ h3 {
 }
 
 .card {
-  @apply border rounded-[20px] bg-[#FFFFFF] p-6;
+  @apply border border-white rounded-[20px] bg-[#FFFFFF] p-6;
+}
+
+.card h4 {
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }

@@ -1,6 +1,72 @@
+"use client";
+
 import DashboardCard from '../DashboardCard';
+import { Line } from 'react-chartjs-2';
+import '../../lib/chartConfig';
 
 export default function ActiveUsers() {
+    const chartData = {
+        labels: ['12AM', '4AM', '8AM', '12PM', '4PM', '8PM', '12AM'],
+        datasets: [
+            {
+                label: 'Active Users',
+                data: [300, 350, 800, 1200, 1500, 2500, 1870],
+                fill: true,
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                borderColor: '#3B82F6',
+                borderWidth: 2,
+                pointBackgroundColor: '#3B82F6',
+                pointBorderColor: '#3B82F6',
+                pointRadius: 0,
+                pointHoverRadius: 6,
+                tension: 0.4,
+            },
+        ],
+    };
+
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false,
+            },
+            tooltip: {
+                enabled: true,
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                titleColor: 'white',
+                bodyColor: 'white',
+                borderColor: '#3B82F6',
+                borderWidth: 1,
+            },
+        },
+        scales: {
+            x: {
+                display: false,
+                grid: {
+                    display: false,
+                },
+            },
+            y: {
+                display: false,
+                grid: {
+                    display: false,
+                },
+                min: 0,
+                max: 3000,
+            },
+        },
+        elements: {
+            point: {
+                hoverRadius: 6,
+            },
+        },
+        interaction: {
+            intersect: false,
+            mode: 'index',
+        },
+    };
+
     return (
         <DashboardCard title="Active Users" className="flex-1 relative">
             <div className="flex items-start justify-between mb-4">
@@ -11,34 +77,16 @@ export default function ActiveUsers() {
                 <div className="flex items-center text-green-600 text-sm font-medium">
                     +15.03%
                     <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M7 14l5-5 5 5z"/>
+                        <path d="M7 14l5-5 5 5z" />
                     </svg>
                 </div>
             </div>
-            
-            {/* Chart placeholder */}
-            <div className="h-16 relative mb-4">
-                <svg className="w-full h-full" viewBox="0 0 280 60">
-                    <defs>
-                        <linearGradient id="activeUsersGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.3"/>
-                            <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.05"/>
-                        </linearGradient>
-                    </defs>
-                    <path 
-                        d="M10,50 Q50,45 90,40 T170,30 Q210,25 250,20 L270,15" 
-                        fill="none" 
-                        stroke="#3B82F6" 
-                        strokeWidth="2"
-                    />
-                    <path 
-                        d="M10,50 Q50,45 90,40 T170,30 Q210,25 250,20 L270,15 L270,60 L10,60 Z" 
-                        fill="url(#activeUsersGradient)"
-                    />
-                    <circle cx="270" cy="15" r="3" fill="#3B82F6"/>
-                </svg>
+
+            {/* Real Chart */}
+            <div className="h-32 relative mb-4 w-full" style={{ height: '127px' }}>
+                <Line data={chartData} options={chartOptions} />
             </div>
-            
+
             <div className="space-y-1 text-xs text-gray-500">
                 <div>Peak Activity: 2,500 users at 8:00 PM</div>
                 <div>Lowest Activity: 300 users</div>

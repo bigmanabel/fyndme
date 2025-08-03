@@ -1,50 +1,75 @@
+"use client";
+
 import DashboardCard from '../DashboardCard';
+import { Bar } from 'react-chartjs-2';
+import '../../lib/chartConfig';
 
 export default function ServerUsageByState() {
-    const states = [
-        { code: 'AL', value: 45, color: '#93C5FD' },
-        { code: 'AK', value: 25, color: '#CBD5E1' },
-        { code: 'AZ', value: 35, color: '#E2E8F0' },
-        { code: 'AR', value: 70, color: '#3B82F6' },
-        { code: 'CA', value: 85, color: '#60A5FA' },
-        { code: 'CO', value: 75, color: '#6B7280' },
-        { code: 'CT', value: 55, color: '#1E40AF' },
-        { code: 'DE', value: 30, color: '#94A3B8' },
-        { code: 'FL', value: 40, color: '#64748B' },
-        { code: 'GA', value: 90, color: '#1E3A8A' },
-        { code: 'HI', value: 35, color: '#E2E8F0' },
-        { code: 'ID', value: 30, color: '#F1F5F9' },
-        { code: 'IL', value: 25, color: '#CBD5E1' },
-        { code: 'IN', value: 65, color: '#3B82F6' },
-        { code: 'IA', value: 80, color: '#60A5FA' },
-        { code: 'KS', value: 55, color: '#6B7280' },
-        { code: 'KY', value: 50, color: '#1E40AF' },
-        { code: 'LA', value: 75, color: '#3B82F6' },
-        { code: 'ME', value: 60, color: '#64748B' }
-    ];
+    const chartData = {
+        labels: ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME'],
+        datasets: [
+            {
+                data: [45, 25, 35, 70, 85, 75, 55, 30, 40, 90, 35, 30, 25, 65, 80, 55, 50, 75, 60],
+                backgroundColor: [
+                    '#93C5FD', '#CBD5E1', '#E2E8F0', '#3B82F6', '#60A5FA', '#6B7280', '#1E40AF', '#94A3B8',
+                    '#64748B', '#1E3A8A', '#E2E8F0', '#F1F5F9', '#CBD5E1', '#3B82F6', '#60A5FA', '#6B7280',
+                    '#1E40AF', '#3B82F6', '#64748B'
+                ],
+                borderRadius: {
+                    topLeft: 2,
+                    topRight: 2,
+                },
+                borderSkipped: false,
+            },
+        ],
+    };
+
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false,
+            },
+            tooltip: {
+                enabled: true,
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                titleColor: 'white',
+                bodyColor: 'white',
+                borderColor: '#3B82F6',
+                borderWidth: 1,
+                callbacks: {
+                    label: function (context) {
+                        return context.label + ': ' + context.parsed.y + '%';
+                    }
+                }
+            },
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false,
+                },
+                ticks: {
+                    font: {
+                        size: 10,
+                    },
+                },
+            },
+            y: {
+                display: false,
+                beginAtZero: true,
+                max: 100,
+            },
+        },
+    };
 
     return (
         <DashboardCard title="Server Usage By State" className="w-full mb-[40px]">
-            <div className="h-32 flex items-end justify-between px-4 pb-4 mb-6">
-                {/* Bars */}
-                <div className="flex items-end justify-between w-full space-x-1">
-                    {states.map((state, index) => (
-                        <div key={state.code} className="flex flex-col items-center">
-                            <div 
-                                className="w-6 rounded-t-sm"
-                                style={{ 
-                                    height: `${(state.value / 100) * 80}px`,
-                                    backgroundColor: state.color
-                                }}
-                            />
-                            <span className="text-xs text-gray-600 mt-1">
-                                {state.code}
-                            </span>
-                        </div>
-                    ))}
-                </div>
+            <div className="h-32 mb-6">
+                <Bar data={chartData} options={chartOptions} />
             </div>
-            
+
             {/* Pagination */}
             <div className="flex items-center justify-center space-x-2">
                 <button className="text-gray-400 hover:text-gray-600">
