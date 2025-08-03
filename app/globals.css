@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
-body{
-  @apply bg-[#F0F9FF]
+body {
+  @apply bg-[#F0F9FF];
+}
+
+h1 {
+  @apply text-3xl/[140%] text-[#2E2A2A] font-[600];
+}
+
+h3 {
+  @apply text-[20px] text-[#000000] font-[600] my-[28px];
+}
+
+.card {
+  @apply border rounded-[20px] bg-[#FFFFFF] p-6;
 }
